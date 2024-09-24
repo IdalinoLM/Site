@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Trabalhos e Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #addClient {
+            margin-bottom: 20px;
+        }
+
+        #addClient input, #addClient button {
+            width: 150%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .save-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eaeaea;
+        }
+
+        #chartContainer {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            #addClient input, #addClient button {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            #chartContainer {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            #addClient input, #addClient button {
+                width: 48%;
+                margin-right: 2%;
+                box-sizing: border-box;
+            }
+
+            #addClient input:nth-child(odd), #addClient button:nth-child(odd) {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle de Trabalhos e Clientes</h1>
+
+    <div id="addClient">
+        <h2>Adicionar Novo Cliente</h2>
+        <input type="text" id="novoTrabalho" placeholder="Número do Trabalho" required>
+        <input type="text" id="novoCliente" placeholder="Cliente" required>
+        <input type="text" id="novaDescricao" placeholder="Descrição do Trabalho" required>
+        <input type="text" id="novoTipo" placeholder="Tipo de Serviço" required>
+        <input type="date" id="novaDataInicio" required>
+        <input type="date" id="novaDataConclusao" required>
+        <input type="number" id="novoValorCobrado" placeholder="Valor Cobrado" required>
+        <input type="number" id="novoValorRecebido" placeholder="Valor Recebido" required>
+        <input type="text" id="novaNota" placeholder="Notas" required>
+        <button onclick="adicionarCliente()">Adicionar Cliente</button>
+    </div>
+
+    <table id="workTable">
+        <thead>
+            <tr>
+                <th>Número do Trabalho</th>
+                <th>Cliente</th>
+                <th>Descrição do Trabalho</th>
+                <th>Tipo de Serviço</th>
+                <th>Data de Início</th>
+                <th>Data de Conclusão</th>
+                <th>Status</th>
+                <th>Valor Cobrado</th>
+                <th>Valor Recebido</th>
+                <th>Saldo Devido</th>
+                <th>Notas</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Linhas dinâmicas -->
+        </tbody>
+    </table>
+
+    <p>Total de Trabalhos Concluídos: <strong id="totalConcluido">7</strong></p>
+    <p>Total de Valor Devido: <strong id="totalDevido">R$ 510.00</strong></p>
+
+    <a href="#" class="save-btn" onclick="salvarDados()">Salvar Alterações</a>
+
+    <div id="chartContainer">
+        <canvas id="myChart" width="600" height="600"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function adicionarCliente() {
+            // Lógica para adicionar cliente
+            alert('Cliente adicionado!');
+        }
+
+        function salvarDados() {
+            // Lógica para salvar os dados
+            alert('Dados salvos!');
+        }
+
+        // Exemplo de uso do Chart.js
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
+                datasets: [{
+                    label: 'Trabalhos Concluídos',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
